@@ -1,0 +1,11 @@
+# Ignore files khi build Docker image
+be-server.exe
+qh88-server
+*.exe
+.git
+.gitignore
+.env
+data/logins.json
+*.md
+DEPLOY.md
+

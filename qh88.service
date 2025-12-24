@@ -1,0 +1,16 @@
+[Unit]
+Description=QH88 Server
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/opt/qh88
+ExecStart=/opt/qh88/qh88-server
+Restart=always
+RestartSec=5
+Environment="DOWNLOAD_TOKEN=tok123"
+
+[Install]
+WantedBy=multi-user.target
+

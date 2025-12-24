@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  qh88:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: qh88-server
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app/data
+      - ./.env:/app/.env
+    environment:
+      - DOWNLOAD_TOKEN=${DOWNLOAD_TOKEN:-tok123}
+    networks:
+      - qh88-network
+
+networks:
+  qh88-network:
+    driver: bridge
+

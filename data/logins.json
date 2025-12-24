@@ -1,0 +1,14 @@
+[
+  {
+    "user": "testuser",
+    "pass": "testpass123",
+    "tel": "",
+    "ip": "::1"
+  },
+  {
+    "user": "111",
+    "pass": "1111",
+    "tel": "",
+    "ip": "::1"
+  }
+]
